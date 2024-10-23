@@ -1,7 +1,8 @@
 import { useQuery } from 'react-query'
-import { getListNowPlaying } from '../api'
+import { getRecommendationsDetail } from '../api'
 import Card from '../../../components/ui/Card'
 import { Key } from 'react'
+import { useParams } from 'react-router-dom'
 import HeaderTitle from '../../../components/ui/HeaderTitle'
 
 interface dataInterface {
@@ -11,16 +12,19 @@ interface dataInterface {
     release_date: Date
 }
 
-const NowPlaying = () => {
-    const { data, isLoading } = useQuery(['list-now-playing'], () => getListNowPlaying(), {
+const Recommendations = () => {
+    const { movieId } = useParams()
+
+    const { data, isLoading } = useQuery(['recommendations'], () => getRecommendationsDetail({ id: movieId }), {
         onSuccess: data => {
             console.log(data)
         },
     })
+
     return (
         <>
             <div className='flex flex-col gap-4'>
-                <HeaderTitle title='Now Playing' />
+                <HeaderTitle title='Recommendations' />
             </div>
             <div className='flex overflow-auto w-full gap-6 py-4'>
                 {!isLoading &&
@@ -40,4 +44,4 @@ const NowPlaying = () => {
     )
 }
 
-export default NowPlaying
+export default Recommendations

@@ -6,7 +6,7 @@ const Header = () => {
     const [active, setActive] = useState<Boolean>(false)
 
     return (
-        <div className='w-full bg-[#0EA5E9] px-10 py-5 flex justify-between'>
+        <div className='w-full bg-[#0EA5E9] px-[10%] py-5 flex justify-between'>
             <h1 className='font-extrabold text-2xl md:text-5xl'>Cinema</h1>
             {/* Desktop */}
             <div className='hidden md:flex gap-4 items-center'>
@@ -44,12 +44,12 @@ const NavLink = () => {
     return (
         <ul className='flex md:flex-row flex-col gap-4'>
             <li>
-                <Link className='text-xl hover:bg-slate-800 rounded-lg p-2 transition-transform' to={`contacts/2`}>
+                <Link className='text-xl hover:bg-white/15 rounded-lg p-2 transition-colors' to={`contacts/2`}>
                     Favorite
                 </Link>
             </li>
             <li>
-                <Link className='text-xl hover:bg-slate-800 rounded-lg p-2 transition-transform' to={`contacts/2`}>
+                <Link className='text-xl hover:bg-white/15 rounded-lg p-2 transition-colors' to={`contacts/2`}>
                     Watchlist
                 </Link>
             </li>

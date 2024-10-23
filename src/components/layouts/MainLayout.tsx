@@ -8,7 +8,9 @@ const MainLayout = () => {
             {/* Header */}
             <Header />
             {/* Content */}
-            <Outlet />
+            <div className='px-[4%] md:px-[10%] relative'>
+                <Outlet />
+            </div>
             {/* Footer */}
         </div>
     )

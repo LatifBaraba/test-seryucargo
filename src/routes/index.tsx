@@ -1,6 +1,7 @@
 import { lazy } from 'react'
 import MainLayout from '../components/layouts/MainLayout'
 const Home = lazy(() => import('../modules/Home/Home'))
+const Detail = lazy(() => import('../modules/Detail/Detail'))
 
 export const routeData = [
     {
@@ -9,6 +10,10 @@ export const routeData = [
             {
                 index: true,
                 element: <Home />,
+            },
+            {
+                path: '/movie/:movieId',
+                element: <Detail />,
             },
         ],
     },
