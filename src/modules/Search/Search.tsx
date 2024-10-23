@@ -1,8 +1,9 @@
 import { useQuery } from 'react-query'
-import { getListTopRated } from '../api'
-import Card from '../../../components/ui/Card'
-import { Key } from 'react'
-import HeaderTitle from '../../../components/ui/HeaderTitle'
+import { Key, useEffect } from 'react'
+import Card from '../../components/ui/Card'
+import HeaderTitle from '../../components/ui/HeaderTitle'
+import { getSearchMovie } from './api'
+import { useSearch } from '../../contexts/Search'
 
 interface dataInterface {
     id: number
@@ -11,19 +12,26 @@ interface dataInterface {
     release_date: Date
 }
 
-const TopRated = () => {
-    const { data, isLoading } = useQuery(['list-top-rated'], () => getListTopRated(), {
+const Search = () => {
+    const { search } = useSearch()
+
+    const { data, refetch, isLoading, isFetching } = useQuery(['list-search'], () => getSearchMovie({ search: search }), {
         onSuccess: data => {
             console.log(data)
         },
     })
+
+    useEffect(() => {
+      refetch()
+    }, [search])
+    
     return (
         <>
-            <div className='flex flex-col gap-6'>
-                <HeaderTitle title='Top Rated' />
+            <div className='flex flex-col gap-6 my-10'>
+                <HeaderTitle title='Search' />
             </div>
             <div className='flex flex-wrap gap-6 justify-center'>
-                {!isLoading &&
+                {!isFetching &&
                     data.results.map((item: dataInterface, idx: Key | null | undefined) => {
                         return (
                             <Card
@@ -40,4 +48,4 @@ const TopRated = () => {
     )
 }
 
-export default TopRated
+export default Search

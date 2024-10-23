@@ -1,9 +1,7 @@
 import dayjs from 'dayjs'
 import { Bookmark, Heart } from 'lucide-react'
 import { minuteToDuration } from '../../../utils/duration'
-import { useQueryClient } from 'react-query'
-import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { trailingComma } from '../../../utils/trailling'
 
 interface DetailProps {
     poster_path: string
@@ -38,7 +36,7 @@ const DetailContent = ({
                 className='absolute top-0 left-0 w-screen object-cover h-[400px] -z-10'
                 src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
             />
-            <div className='flex flex-col md:flex-row gap-6 py-10 justify-center md:justify-normal'>
+            <div className='flex flex-col md:flex-row gap-6 my-10 justify-center md:justify-normal'>
                 {/* Left Image */}
                 <img className='max-w-52 m-auto md:m-0' src={`https://image.tmdb.org/t/p/original/${poster_path}`} alt='' />
                 {/* Right */}
@@ -63,7 +61,7 @@ const DetailContent = ({
                     <div className='flex gap-4 items-center'>
                         <div className='flex items-center gap-2'>
                             <div className='rounded-full size-8 bg-white flex items-center justify-center'>
-                                <span className='text-[#0EA5E9] font-extrabold text-xs'>{vote_average}</span>
+                                <span className='text-[#0EA5E9] font-extrabold text-xs'>{trailingComma({num: vote_average})}</span>
                             </div>
                             <span className='text-[8px] font-normal'>
                                 User <br /> Score

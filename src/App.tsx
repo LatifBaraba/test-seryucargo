@@ -5,6 +5,7 @@ import { routeData } from './routes'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import LayoutSplashScreen from './components/layouts/SplashScreen'
+import { SearchProvider } from './contexts/Search'
 
 const router = createBrowserRouter(routeData)
 const queryClient = new QueryClient()
@@ -14,7 +15,9 @@ function App() {
         <>
             <Suspense fallback={<LayoutSplashScreen />}>
                 <QueryClientProvider client={queryClient}>
-                    <RouterProvider router={router} />
+                    <SearchProvider>
+                        <RouterProvider router={router} />
+                    </SearchProvider>
                 </QueryClientProvider>
             </Suspense>
         </>

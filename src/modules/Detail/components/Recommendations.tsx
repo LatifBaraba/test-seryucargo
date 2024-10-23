@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query'
 import { getRecommendationsDetail } from '../api'
 import Card from '../../../components/ui/Card'
-import { Key } from 'react'
+import { Key, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import HeaderTitle from '../../../components/ui/HeaderTitle'
 
@@ -15,7 +15,11 @@ interface dataInterface {
 const Recommendations = () => {
     const { movieId } = useParams()
 
-    const { data, isLoading } = useQuery(['recommendations'], () => getRecommendationsDetail({ id: movieId }), {
+    useEffect(() => {
+        refetch()
+    }, [movieId])
+
+    const { data, refetch, isLoading } = useQuery(['recommendations'], () => getRecommendationsDetail({ id: movieId }), {
         onSuccess: data => {
             console.log(data)
         },

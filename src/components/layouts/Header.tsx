@@ -1,13 +1,19 @@
 import { LogIn, Menu, X } from 'lucide-react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import SearchBar from './SearchBar'
 
 const Header = () => {
+    const navigate = useNavigate()
     const [active, setActive] = useState<Boolean>(false)
-
     return (
         <div className='w-full bg-[#0EA5E9] px-[10%] py-5 flex justify-between'>
-            <h1 className='font-extrabold text-2xl md:text-5xl'>Cinema</h1>
+            <h1
+                className='font-extrabold text-2xl md:text-5xl cursor-pointer hover:scale-105 transition-transform'
+                onClick={() => navigate('/')}
+            >
+                Cinema
+            </h1>
             {/* Desktop */}
             <div className='hidden md:flex gap-4 items-center'>
                 <NavLink />
@@ -30,7 +36,9 @@ const Header = () => {
             >
                 <div className='flex flex-col justify-between h-full'>
                     <div className='flex flex-col gap-4'>
-                        <h1 className='font-extrabold text-2xl md:text-4xl border-b-2'>Cinema</h1>
+                        <h1 className='font-extrabold text-2xl md:text-4xl border-b-2 cursor-pointer' onClick={() => navigate('/')}>
+                            Cinema
+                        </h1>
                         <NavLink />
                     </div>
                     <LogIn />
@@ -42,7 +50,10 @@ const Header = () => {
 
 const NavLink = () => {
     return (
-        <ul className='flex md:flex-row flex-col gap-4'>
+        <ul className='flex md:flex-row flex-col gap-4 items-center'>
+            <li className=''>
+                <SearchBar />
+            </li>
             <li>
                 <Link className='text-xl hover:bg-white/15 rounded-lg p-2 transition-colors' to={`contacts/2`}>
                     Favorite

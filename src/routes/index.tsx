@@ -9,6 +9,7 @@ export const routeData = [
         children: [
             {
                 index: true,
+                path: '/',
                 element: <Home />,
             },
             {
