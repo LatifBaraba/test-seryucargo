@@ -55,12 +55,12 @@ const NavLink = () => {
                 <SearchBar />
             </li>
             <li>
-                <Link className='text-xl hover:bg-white/15 rounded-lg p-2 transition-colors' to={`contacts/2`}>
+                <Link className='text-xl hover:bg-white/15 rounded-lg p-2 transition-colors' to={`/favorite`}>
                     Favorite
                 </Link>
             </li>
             <li>
-                <Link className='text-xl hover:bg-white/15 rounded-lg p-2 transition-colors' to={`contacts/2`}>
+                <Link className='text-xl hover:bg-white/15 rounded-lg p-2 transition-colors' to={`/watchlist`}>
                     Watchlist
                 </Link>
             </li>

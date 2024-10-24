@@ -13,18 +13,18 @@ interface dataInterface {
 }
 
 const Search = () => {
-    const { search } = useSearch()
+    const { search, debouncedSearch } = useSearch()
 
-    const { data, refetch, isLoading, isFetching } = useQuery(['list-search'], () => getSearchMovie({ search: search }), {
+    const { data, refetch, isFetching } = useQuery(['list-search'], () => getSearchMovie({ search: search }), {
         onSuccess: data => {
             console.log(data)
         },
     })
 
     useEffect(() => {
-      refetch()
-    }, [search])
-    
+        refetch()
+    }, [debouncedSearch])
+
     return (
         <>
             <div className='flex flex-col gap-6 my-10'>

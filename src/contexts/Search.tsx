@@ -1,3 +1,4 @@
+import { useDebounce } from '@react-hooks-library/core'
 import { createContext, useState, useEffect, FC, PropsWithChildren, useContext } from 'react'
 
 export type SearchContextProps = {
@@ -6,6 +7,7 @@ export type SearchContextProps = {
     isSearch?: Boolean
     setIsSearch: (isSearch: any) => void
     handleClearSearch: () => void
+    debouncedSearch?: string
 }
 
 export const initSearchContext: SearchContextProps = {
@@ -22,6 +24,8 @@ const SearchProvider: FC<PropsWithChildren> = ({ children }) => {
     const [isSearch, setIsSearch] = useState<boolean>(false)
     const [search, setSearch] = useState<string>('')
 
+    const debouncedSearch = useDebounce(search, 1000)
+
     useEffect(() => {
         search ? setIsSearch(true) : setIsSearch(false)
     }, [search])
@@ -31,7 +35,11 @@ const SearchProvider: FC<PropsWithChildren> = ({ children }) => {
         setIsSearch(false)
     }
 
-    return <SearchContext.Provider value={{ search, setSearch, isSearch, setIsSearch, handleClearSearch }}>{children}</SearchContext.Provider>
+    return (
+        <SearchContext.Provider value={{ search, setSearch, isSearch, setIsSearch, handleClearSearch, debouncedSearch }}>
+            {children}
+        </SearchContext.Provider>
+    )
 }
 
 const useSearch = () => useContext(SearchContext)
